@@ -7,10 +7,12 @@ namespace DemoJson
 {
     public class JsonMessage
     {
-        public List<JsonMessageEntity> Obter(string localFile, Nullable<int> id, string tipo)
+        public static List<JsonMessageEntity> Obter(string localFile, int id, string tipo = "V")
         {
             List<JsonMessageEntity> list = JsonConvert.DeserializeObject<List<JsonMessageEntity>>(System.IO.File.ReadAllText(localFile));
-            return(from L in list where ((id == null ? id == null : L.id == id) && (tipo == null ? tipo == null : L.tipo.ToLower() == tipo.ToLower())) select L).ToList<JsonMessageEntity>();
+            return(from L in list where (L.id.Equals(id) && L.tipo.Equals(tipo)) select L).ToList<JsonMessageEntity>();
+
+            //string.Equals(StringA, StringB, StringComparison.CurrentCultureIgnoreCase);
         }
     }
 }
