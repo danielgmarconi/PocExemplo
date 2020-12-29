@@ -11,9 +11,7 @@ namespace DemoJson
         static void Main(string[] args)
         {
 
-            JsonMessage v = new JsonMessage();
-
-            v.Obter("mensagem.json", 1, "V");
+            JsonMessage.Obter("mensagem.json", 1, "V");
             Console.ReadLine();
         }
     }
